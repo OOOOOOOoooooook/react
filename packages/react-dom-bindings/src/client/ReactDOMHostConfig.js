@@ -462,9 +462,10 @@ type FrameAlignedTask = {|
 let currentTask: FrameAlignedTask | null = null;
 function performFrameAlignedWork() {
   if (currentTask != null) {
+    const currentTaskForFlow = currentTask;
     const task = currentTask.task;
-    localCancelAnimationFrame(currentTask.rafNode);
-    Scheduler.unstable_cancelCallback(currentTask.schedulerNode);
+    localCancelAnimationFrame(currentTaskForFlow.rafNode);
+    Scheduler.unstable_cancelCallback(currentTaskForFlow.schedulerNode);
     currentTask = null;
     if (task != null) {
       task();

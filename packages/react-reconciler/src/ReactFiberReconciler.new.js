@@ -58,7 +58,6 @@ import {
 import {
   requestEventTime,
   requestUpdateLane,
-  requestUpdateLane_getUpdatePriority,
   scheduleUpdateOnFiber,
   scheduleInitialHydrationOnRoot,
   flushRoot,
