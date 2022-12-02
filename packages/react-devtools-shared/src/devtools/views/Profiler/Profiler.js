@@ -15,6 +15,7 @@ import TabBar from '../TabBar';
 import ClearProfilingDataButton from './ClearProfilingDataButton';
 import CommitFlamegraph from './CommitFlamegraph';
 import CommitRanked from './CommitRanked';
+import CommitSummary from './CommitSummary';
 import RootSelector from './RootSelector';
 import {Timeline} from 'react-devtools-timeline/src/Timeline';
 import SidebarEventInfo from './SidebarEventInfo';
@@ -23,6 +24,7 @@ import ReloadAndProfileButton from './ReloadAndProfileButton';
 import ProfilingImportExportButtons from './ProfilingImportExportButtons';
 import SnapshotSelector from './SnapshotSelector';
 import SidebarCommitInfo from './SidebarCommitInfo';
+import SidebarSummaryInfo from './SidebarSummaryInfo';
 import NoProfilingData from './NoProfilingData';
 import RecordingInProgress from './RecordingInProgress';
 import ProcessingData from './ProcessingData';
@@ -69,6 +71,9 @@ function Profiler(_: {}) {
       case 'ranked-chart':
         view = <CommitRanked />;
         break;
+      case 'summary-chart':
+        view = <CommitSummary />;
+        break;
       case 'timeline':
         view = <Timeline />;
         break;
@@ -105,6 +110,9 @@ function Profiler(_: {}) {
             sidebar = <SidebarCommitInfo />;
           }
         }
+        break;
+      case 'summary-chart':
+        sidebar = <SidebarSummaryInfo />;
         break;
       case 'timeline':
         sidebar = <SidebarEventInfo />;
@@ -182,6 +190,12 @@ const tabs = [
     icon: 'ranked-chart',
     label: 'Ranked',
     title: 'Ranked chart',
+  },
+  {
+    id: 'summary-chart',
+    icon: 'summary-chart',
+    label: 'Summary',
+    title: 'Summary chart',
   },
 ];
 

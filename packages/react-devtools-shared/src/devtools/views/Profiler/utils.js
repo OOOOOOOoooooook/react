@@ -18,6 +18,10 @@ import type {
   ProfilingDataFrontend,
   SnapshotNode,
 } from './types';
+import {
+  ElementTypeForwardRef,
+  ElementTypeMemo,
+} from '../../../types';
 import type {
   TimelineData,
   TimelineDataExport,
@@ -372,6 +376,33 @@ export const formatPercentage = (percentage: number): number =>
   Math.round(percentage * 100);
 export const formatTime = (timestamp: number): number =>
   Math.round(Math.round(timestamp) / 100) / 10;
+export const dround = (n: number): number =>
+  Math.round(n * 10) / 10;
+
+export const formatLabel = (displayName: string, key, type, selfDuration) => {
+    const name = displayName || 'Anonymous';
+    const maybeKey = key !== null ? ` key="${key}"` : '';
+
+    let maybeBadge = '';
+    if (type === ElementTypeForwardRef) {
+      maybeBadge = ' (ForwardRef)';
+    } else if (type === ElementTypeMemo) {
+      maybeBadge = ' (Memo)';
+    }
+    return `${name}${maybeBadge}${maybeKey} (${formatDuration(selfDuration)}ms)`;
+}
+
+export const formatLabelNoDuration = (displayName: string, type) => {
+    const name = displayName || 'Anonymous';
+
+    let maybeBadge = '';
+    if (type === ElementTypeForwardRef) {
+      maybeBadge = ' (ForwardRef)';
+    } else if (type === ElementTypeMemo) {
+      maybeBadge = ' (Memo)';
+    }
+    return `${name}${maybeBadge}`;
+}
 
 export const scale = (
   minValue: number,

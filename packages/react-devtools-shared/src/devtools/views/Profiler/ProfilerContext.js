@@ -22,7 +22,7 @@ import {logEvent} from 'react-devtools-shared/src/Logger';
 
 import type {ProfilingDataFrontend} from './types';
 
-export type TabID = 'flame-chart' | 'ranked-chart' | 'timeline';
+export type TabID = 'flame-chart' | 'ranked-chart' | 'summary-chart' | 'timeline';
 
 export type Context = {
   // Which tab is selected in the Profiler UI?

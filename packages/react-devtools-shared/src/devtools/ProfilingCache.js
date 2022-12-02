@@ -20,6 +20,10 @@ import {
   getChartData as getRankedChartData,
   invalidateChartData as invalidateRankedChartData,
 } from 'react-devtools-shared/src/devtools/views/Profiler/RankedChartBuilder';
+import {
+  getChartData as getSummaryChartData,
+  invalidateChartData as invalidateSummaryChartData,
+} from 'react-devtools-shared/src/devtools/views/Profiler/SummaryChartBuilder';
 
 import type {CommitTree} from 'react-devtools-shared/src/devtools/views/Profiler/types';
 import type {ChartData as FlamegraphChartData} from 'react-devtools-shared/src/devtools/views/Profiler/FlamegraphChartBuilder';
@@ -89,11 +93,24 @@ export default class ProfilingCache {
       rootID,
     });
 
+  getSummaryChartData: ({
+    commitIndex: number,
+    commitTree: CommitTree,
+    rootID: number,
+  }) => any = ({commitIndex, commitTree, rootID}) =>
+    getSummaryChartData({
+      commitIndex,
+      commitTree,
+      profilerStore: this._profilerStore,
+      rootID,
+    });
+
   invalidate() {
     this._fiberCommits.clear();
 
     invalidateCommitTrees();
     invalidateFlamegraphChartData();
     invalidateRankedChartData();
+    invalidateSummaryChartData();
   }
 }
